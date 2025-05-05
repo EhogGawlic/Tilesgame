@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tiles</title>
+        <link rel="stylesheet" href="src/style.css">
+        <script src="src/levels.js"></script>
+        <script src="src/utils.js"></script>
+    </head>
+    <body>
+        <canvas id="screen"></canvas>
+        <div id="bottommenu">
+            <div id="moneycontainer" class="nc"><span id="moneytxt">$</span></div>
+            <div id="energycontainer" class="nc"><span id="energytxt">Energy: </span></div>
+            <div id="moves">
+                <div class="move" id="move1">Regular 1<button class="buybtn" id="b1">Buy (free)</button></div>
+                <div class="move" id="move2">Regular 2<button class="buybtn" id="b2">Buy (free)</button></div>
+                <div class="move" id="move3">Offset 1<button class="buybtn" id="b3">Buy ($2)</button></div>
+                <div class="move" id="move4">Offset 2<button class="buybtn" id="b4">Buy ($2)</button></div>
+                <div class="move" id="move5">Attack 1<button class="buybtn" id="b5">Buy (2 energy)</button></div>
+                <div class="move" id="move6">Teleport 1<button class="buybtn" id="b6">Buy (20 coins)</button></div>
+            </div>
+        </div><!--span id="fdf" style="position: absolute; left: 0; top: 2000px;">r</span><span id="fdffff" style="position: absolute; left: 0; top: 2200px;">r</span>-->
+        <div id="upgmenu">
+            <div class="upg" id="u1">
+                <h3>Sharp <span id="u1l">I</span></h3>
+                <p>Attack damage. Current damage is <span id="u1v">1</span> per click.</p>
+                <button class="buybtn" id="ub1">Buy ($<span id="u1c">20</span>)</button>
+            </div>
+            <div class="upg" id="u2">
+                <h3>More Moves <span id="u2l">I</span></h3>
+                <p>Your moves. You have <span id="u2v">Regular 1, Regular 2, Offset 1, Offset 2, and Attack 1.</span></p>
+                <button class="buybtn" id="ub2">Buy ($<span id="u2c">50</span>)</button>
+            </div>
+            <div class="upg" id="u3">
+                <h3>Energy <span id="u3l">I</span></h3>
+                <p>How much energy you get every time you step on a black tile. You get <span id="u3v">1</span> energy per tile.</p>
+                <button class="buybtn" id="ub3">Buy ($<span id="u3c">30</span>)</button>
+            </div>
+            <div class="upg" id="u4">
+                <h3>Coins <span id="u4l">I</span></h3>
+                <p>How many coins you get every time you step on a black tile. You get <span id="u4v">1</span> coins per tile.</p>
+                <button class="buybtn" id="ub4">Buy ($<span id="u4c">40</span>)</button>
+            </div>
+            <div class="upg" id="u5">
+                <h3>Swing <span id="u5l">I</span></h3>
+                <p>The area of attack moves. Current dist.: <span id="u5v">0</span> tile(s)</p>
+                <button class="buybtn" id="ub5">Buy ($<span id="u5c">50</span>)</button>
+            </div>
+        </div>
+        <div id="leftmenu">
+            <a download="save.json" href="data:text/json,{name:'n'}" id="savelink">Save</a><br>
+            <label for="redeemcodeinp">Reedem code</label><br>
+            <input id="redeemcodeinp" onchange="
+                switch (getEl('redeemcodeinp').value){
+                    case '$kibidicoin$':
+                        upgs[3].value*=2
+                        upgs[3].am++
+                        u4v.innerText = upgs[3].value
+                        u4l.innerText = dectorom[upgs[3].am]
+                        break
+                    case 'supasonick':
+                        upgs[2].value*=2
+                        upgs[2].am++
+                        u4v.innerText = upgs[2].value
+                        u4l.innerText = dectorom[upgs[2].am]
+                }
+            ">
+        </div>
+        <div id="mainscreen">
+            <h1 id="btmh">TILES</h1>
+            <h1 id="toph">TILES</h1>
+            <button class="msbtn" id="msbtn1" onclick="
+                getEl('mainscreen').style.display='none'
+            ">NEW GAME</button>
+            <button class="msbtn" id="msbtn2" onclick="
+                getEl('loadgscreen').style.display='block'
+            ">LOAD GAME</button>
+            <a style="display:none" id="msbtn3a" href="levelcreator/index.html">e</a>
+            <button class="msbtn" id="msbtn3" onclick="getEl('msbtn3a').click()">CREATE LEVEL</button>
+            <div id="loadgscreen" class="popup">
+                <button style="position: absolute; right: 1%; top: 1%;;" onclick="
+                    getEl('loadgscreen').style.display='none'   
+                "><b>X</b></button>
+                <h1>Load game</h1>
+                <label for="fileinp">Save file</label><br>
+                <input type="file" id="fileinp" accept="text.json" onchange="
+                    processFiles(this.files)
+                    getEl('mainscreen').style.display='none'
+                ">
+            </div>
+            <!--<div id="newgamescreen" class="popup">
+                <label for="selectchar">Select character</label>
+                <select id="selectchar">
+                    <option value="1">Dev char Bert</option>
+                    <option value="2">Dev char Bob</option>
+                    <option value="3">Dev char Ed</option>
+                    <option value="4">Ehag garlic</option>
+                    <option value="5">Gwaysag moto moto</option>
+                    <option value="6">Stanky voishquesh</option>
+                </select>
+                
+                <button id="okbtn" style="position: absolute; bottom: 1%; left: 45%; right: 45%;" onclick = "
+                    getEl('mainscreen').style.display='none'    
+                ">OK</button>
+            </div>-->
+        </div>
+        <script src="src/elements.js"></script>
+        <script src="src/main.js"></script>
+    </body>
+</html>
