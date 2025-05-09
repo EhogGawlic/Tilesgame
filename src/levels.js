@@ -347,5 +347,6 @@ if (localStorage.getItem("customlvls")){
             })
             ro++
         })
+        levels.levels.push(clvl)
     })
 }
