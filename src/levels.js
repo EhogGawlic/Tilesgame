@@ -325,7 +325,7 @@ if (localStorage.getItem("customlvls")){
         const end = l.getTextBetweenStrings("end: [","],\eenemies", true).split(",")
         const enemies = l.getTextBetweenStrings("enemies: [","]\n}", true).split(",")
         enemies.forEach(enemy=>{
-            clvl.push(parseInt(enemy))
+            clvl.enemies.push(parseInt(enemy))
         })
         clvl.start = [
             parseInt(start[0]),
