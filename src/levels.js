@@ -312,3 +312,40 @@ let levels = {
         }
     ] 
 }
+
+if (localStorage.getItem("customlvls")){
+    const lvls = localStorage.getItem("customlvls").split("%")
+    lvls.forEach(l=>{
+        let clvl = {width:0,height:0,data:[],start:[0,0],end:[0,0],enemies:[]}
+        clvl.width = parseInt(l.getTextBetweenStrings("width:",",height", true))
+        clvl.height = parseInt(l.getTextBetweenStrings("height:",",data", true))
+        const data = l.getTextBetweenStrings("data: [","],\nstart", true)
+        const rows = data.split("],\n[")
+        const start = l.getTextBetweenStrings("start: [","],\nend", true).split(",")
+        const end = l.getTextBetweenStrings("end: [","],\eenemies", true).split(",")
+        const enemies = l.getTextBetweenStrings("enemies: [","]\n}", true).split(",")
+        enemies.forEach(enemy=>{
+            clvl.push(parseInt(enemy))
+        })
+        clvl.start = [
+            parseInt(start[0]),
+            parseInt(start[1])
+        ]
+        clvl.end = [
+            parseInt(end[0]),
+            parseInt(end[1])
+        ]
+        let ro = 0
+        rows.forEach(r => {
+            clvl.data.push([])
+            const items = r.split(",")
+            let col = 0
+            items.forEach(item => {
+                const val = parseInt(item)
+                clvl.data[ro][col] = val
+                col++
+            })
+            ro++
+        })
+    })
+}

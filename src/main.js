@@ -245,12 +245,14 @@ addEventListener("click", ()=>{
             for (let i = 0; i < levels.levels[level].enemies.length; i+=3){
                 const enemyx = levels.levels[level].enemies[i]
                 const enemyy = levels.levels[level].enemies[i+1]
-                if (Math.sqrt((selectedtile.x-enemyx)**2+(selectedtile.y-enemyy)**2) <= upgs[4].value){
-                    levels.levels[level].enemies[i+2]-=upgs[0].value
-                    if (levels.levels[level].enemies[i+2] <= 0){
-                        levels.levels[level].data[levels.levels[level].enemies[i+1]][levels.levels[level].enemies[i]] = 1
-                        levels.levels[level].enemies.splice(i, 3)
-                        coins+=5
+                if (Math.sqrt((playerpos.x-enemyx)**2+(playerpos.y-enemyy)**2) <= 7.5){
+                    if (Math.sqrt((selectedtile.x-enemyx)**2+(selectedtile.y-enemyy)**2) <= upgs[4].value){
+                        levels.levels[level].enemies[i+2]-=upgs[0].value
+                        if (levels.levels[level].enemies[i+2] <= 0){
+                            levels.levels[level].data[levels.levels[level].enemies[i+1]][levels.levels[level].enemies[i]] = 1
+                            levels.levels[level].enemies.splice(i, 3)
+                            coins+=5
+                        }
                     }
                 }
             }
@@ -330,7 +332,7 @@ ub3.addEventListener("click", ()=>{
         u3v.innerText = upgs[2].value
         upgs[2].cost += Math.floor(upgs[2].cost/2)
         u3c.innerText = upgs[2].cost
-        u4l.innerText = dectorom[upgs[2].am]
+        u3l.innerText = dectorom[upgs[2].am]
     }
 })
 ub4.addEventListener("click", ()=>{

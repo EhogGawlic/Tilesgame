@@ -31,19 +31,19 @@
                         end = [x,y]
                     }
                     }
-                    strdata += "]\n"
+                    strdata += "],\n"
                 }
                 return `
-                {
-                    width: ${w},
-                    height: ${h},
-                    data: [
-                        ${strdata}
-                    ],
-                    start: [${start}],
-                    end: [${end}]
-                    enemies: [${enemies}]
-                }
+{
+width: ${w},
+height: ${h},
+data: [
+${strdata}
+],
+start: [${start}],
+end: [${end}],
+enemies: [${enemies}]
+}
 
                 `
             }catch(e){alert(e)}
@@ -81,7 +81,10 @@
                 <option value="5">Start</option>
             </select><br>
             <input id="enemyh" type="number" value="2"><br>
-            <a download="save.txt" href="data:text/plain,Error">Save</a>
+            <buttton id="randbtn">Randomize white/empty tiles between black and white</buttton><br>
+            <input id="randidff" placeholder="Random tile generator difficulty" type="number"><br>
+            <button id="savelocal">Save locally</button><br>
+            <a download="save.txt" href="data:text/plain,Error">Save (for ehog)</a>
         </div>
         <script>
             const canvas = document.getElementById("canv")
@@ -92,8 +95,32 @@
             const blkselect = document.getElementById("blkslct")
             const ehealth = document.getElementById("enemyh")
             const savebtn = document.querySelector("a")
+            const randbtn = document.getElementById("randbtn")
+            const savelocalbtn = document.getElementById("savelocal")
+            randbtn.onclick=()=>{
+                for (let y = 0; y < data.length; y++){
+                    for (let x = 0; x < data.length; x++){
+                        if (data[y][x]===0){
+                            const assigned = Math.random()*document.getElementById("radniff").value<=1
+                            
+                            if (assigned){
+                                data[y][x]=1
+                            }
+                        }
+                    }
+                }
+            }
+            savelocalbtn.addEventListener("click", ()=>{
+                const txt = getCopyText()
+                const lvls = localStorage.getItem("customlvls")
+                if (!lvls){
+                    localStorage.setItem("customlvls", txt)
+                } else {
+                    localStorage.setItem("customlvls", lvls+"%"+txt)
+                }
+            })
             savebtn.addEventListener("click", ()=>{
-                savebtn.href="data:text.plain,"+getCopyText()
+                savebtn.href="data:text/plain,"+getCopyText()
             })
             document.getElementById("okbtn").addEventListener("click", ()=>{
                 w=parseInt(document.getElementById('widinp').value)
@@ -101,6 +128,7 @@
                 rdo()
                 ctx.clearRect(0,0,innerHeight,innerHeight)
             })
+
             canvas.addEventListener("mousedown", function(){mousedown=true})
             canvas.addEventListener("mouseup", function(){mousedown=false})
             canvas.addEventListener("mousemove", (e)=>{
