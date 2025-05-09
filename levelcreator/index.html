@@ -112,10 +112,19 @@
                     const rx = Math.floor(rtlcmx/tilesize)
                     const ry = Math.floor(rtlcmy/tilesize)
                     if (blkselect.value !== "5"){
+                        if (data[rx][ry]===3){
+                            for (let i = 0; i < enemies.length; i+=3){
+                                if (enemies[i]===rx&&enemies[i+1]===ry){
+                                    enemies.splice(i,3)
+                                }
+                            }
+                        }
                         data[ry][rx]=parseInt(blkselect.value)
 
                         if(blkselect.value==="3"){
-                            enemies.push(rx, ry, parseInt(ehealth.value))
+                            if (data[rx][ry]!==3){
+                                enemies.push(rx, ry, parseInt(ehealth.value))
+                            }
                         }
                     } else {
                         start = [rx, ry]
