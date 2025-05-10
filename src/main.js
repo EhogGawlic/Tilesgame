@@ -128,7 +128,7 @@ m5.addEventListener("click", ()=>{
     }
 })
 m6.addEventListener("click", ()=>{
-    jb=5
+    if (coins >= 50 && jb!==5) jb=5; coins-=50
 })
 addEventListener("mousemove", (e)=>{
     mx = e.clientX
@@ -349,7 +349,6 @@ ub4.addEventListener("click", ()=>{
 })
 try{
 ub5.addEventListener("click", ()=>{
-    alert(a)
     if (coins >= upgs[4].cost){
         alert("e")
         coins -= upgs[4].cost

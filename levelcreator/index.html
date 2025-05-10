@@ -84,7 +84,8 @@ enemies: [${enemies}]
             <button id="randbtn">Randomize white/empty tiles between black and white</button><br>
             <input id="randidff" placeholder="Random tile generator difficulty" type="number" value="2"><br>
             <button id="savelocal">Save locally</button><br>
-            <a download="save.txt" href="data:text/plain,Error">Save (for ehog)</a>
+            <a download="save.txt" href="data:text/plain,Error">Save (for ehog)</a><br>
+            <button onclick="localStorage.setItem('customlvls', '')">Clear custom levels</button>
         </div>
         <script>
             const canvas = document.getElementById("canv")
