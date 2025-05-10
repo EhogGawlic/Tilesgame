@@ -320,11 +320,11 @@ if (localStorage.getItem("customlvls")){
         let clvl = {width:0,height:0,data:[],start:[0,0],end:[0,0],enemies:[]}
         clvl.width = parseInt(l.getTextBetweenStrings("width:",",\nheight", true))
         clvl.height = parseInt(l.getTextBetweenStrings("height:",",\ndata", true))
-        const data = l.getTextBetweenStrings("data: [","],\nstart", true)
+        const data = l.getTextBetweenStrings("data:","start", true)
         const rows = data.split("],\n[")
-        const start = l.getTextBetweenStrings("start: [","],\nend", true).split(",")
-        const end = l.getTextBetweenStrings("end: [","],\nenemies", true).split(",")
-        const enemies = l.getTextBetweenStrings("enemies: [","]", true).split(",")
+        const start = l.getTextBetweenStrings("start:","end", true).split(",")
+        const end = l.getTextBetweenStrings("end:","enemies", true).split(",")
+        const enemies = l.getTextBetweenStrings("enemies:","]", true).split(",")
         console.log(rows,start,end,enemies)
         enemies.forEach(enemy=>{
             clvl.enemies.push(parseInt(enemy))
