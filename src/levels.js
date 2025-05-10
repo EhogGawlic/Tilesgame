@@ -323,7 +323,7 @@ if (localStorage.getItem("customlvls")){
         const data = l.getTextBetweenStrings("data:","start", true)
         const rows = data.split("],\n[")
         const start = l.getTextBetweenStrings("start:","]", true).removeChars("[").split(",")
-        const end = l.getTextBetweenStrings("end:","]", true).removeChars("]").split(",")
+        const end = l.getTextBetweenStrings("end:","]", true).removeChars("[").split(",")
         const enemies = l.getTextBetweenStrings("enemies:","]", true).removeChars("[").split(",")
         console.log(rows,start,end,enemies)
         enemies.forEach(enemy=>{
