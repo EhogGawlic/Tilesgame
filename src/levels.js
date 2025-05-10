@@ -316,9 +316,10 @@ let levels = {
 if (localStorage.getItem("customlvls")){
     const lvls = localStorage.getItem("customlvls").split("%")
     lvls.forEach(l=>{
+        console.log(l)
         let clvl = {width:0,height:0,data:[],start:[0,0],end:[0,0],enemies:[]}
-        clvl.width = parseInt(l.getTextBetweenStrings("width:",",height", true))
-        clvl.height = parseInt(l.getTextBetweenStrings("height:",",data", true))
+        clvl.width = parseInt(l.getTextBetweenStrings("width:",",\nheight", true))
+        clvl.height = parseInt(l.getTextBetweenStrings("height:",",\ndata", true))
         const data = l.getTextBetweenStrings("data: [","],\nstart", true)
         const rows = data.split("],\n[")
         const start = l.getTextBetweenStrings("start: [","],\nend", true).split(",")
