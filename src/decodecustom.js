@@ -18,3 +18,14 @@ String.prototype.getTextBetweenStrings = function(startString, endString, ignore
     }
     return ignoreWhiteSpace?copy.substring(startIndex + startString.length, endIndex).replace(/[ ]+/g, ""):copy.substring(startIndex + startString.length, endIndex);
 }
+/**
+ * 
+ * @param {String} charactersToRemove 
+ * @returns {String}
+ */
+String.prototype.removeChars=function(charactersToRemove) {
+    const str = this+"";
+    const regex = new RegExp(`[${charactersToRemove}]`, 'gi');
+    console.log(regex)
+    return str.replace(regex, '');
+}
