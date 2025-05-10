@@ -140,6 +140,7 @@ addEventListener("mousemove", (e)=>{
 })
 function tile(){
     moved = true
+    levels.levels[level].data[playerpos.y][playerpos.x] = 0
     if (levels.levels[level].data[selectedtile.y][selectedtile.x] !== 4){
         playerpos.x = selectedtile.x
         playerpos.y=selectedtile.y
