@@ -6,7 +6,7 @@
  * @returns 
  */
 String.prototype.getTextBetweenStrings = function(startString, endString, ignoreWhiteSpace) {
-    let copy = this.slice()
+    let copy = this+""
     const startIndex = copy.indexOf(startString);
     if (startIndex === -1) {
         return '';

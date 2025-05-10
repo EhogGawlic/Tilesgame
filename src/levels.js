@@ -322,8 +322,9 @@ if (localStorage.getItem("customlvls")){
         const data = l.getTextBetweenStrings("data: [","],\nstart", true)
         const rows = data.split("],\n[")
         const start = l.getTextBetweenStrings("start: [","],\nend", true).split(",")
-        const end = l.getTextBetweenStrings("end: [","],\eenemies", true).split(",")
-        const enemies = l.getTextBetweenStrings("enemies: [","]\n}", true).split(",")
+        const end = l.getTextBetweenStrings("end: [","],\nenemies", true).split(",")
+        const enemies = l.getTextBetweenStrings("enemies: [","]", true).split(",")
+        console.log(rows,start,end,enemies)
         enemies.forEach(enemy=>{
             clvl.enemies.push(parseInt(enemy))
         })
@@ -347,6 +348,7 @@ if (localStorage.getItem("customlvls")){
             })
             ro++
         })
+        clvl.data[0][0]=1
         levels.levels.push(clvl)
     })
 }
