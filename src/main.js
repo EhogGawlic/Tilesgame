@@ -137,7 +137,7 @@ addEventListener("mousemove", (e)=>{
     const rtlcmy = my-offy
     selectedtile.x = Math.floor(rtlcmx/tilesize)
     selectedtile.y = Math.floor(rtlcmy/tilesize)
-})//
+})
 function tile(){
     moved = true
     levels.levels[level].data[playerpos.y][playerpos.x] = 0

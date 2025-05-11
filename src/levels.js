@@ -1,4 +1,4 @@
-let levels = {
+window.levels = {
     levels: [
         {
             width: 9,
@@ -309,11 +309,18 @@ let levels = {
             ],
             start: [10,10],
             end: [20,0],
-            enemies: [18,0,50,19,1,50,19,2,50,20,3,50,20,4,50,20,5,50,20,6,50,20,7,50]
+            enemies: [18,0,50,
+                19,1,50,
+                
+                19,2,50,
+                20,3,50,
+                20,4,50,
+                20,5,50,
+                20,6,50,
+                20,7,50]
         }
     ] 
 }
-
 if (localStorage.getItem("customlvls")){
     const lvls = localStorage.getItem("customlvls").split("%")
     lvls.forEach(l=>{

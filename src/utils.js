@@ -1,5 +1,9 @@
-
-
+fetch("./src/levels.js").then((response) => {
+    const txt = response.text()
+    txt.then((data) => {
+        eval(data)
+    })
+})
 function getEl(id){
     return document.getElementById(id)
 }

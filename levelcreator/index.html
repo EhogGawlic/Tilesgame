@@ -148,17 +148,16 @@ enemies: [${enemies}]
                                     enemies.splice(i,3)
                                 }
                             }
-                            return
                         }
                         data[ry][rx]=parseInt(blkselect.value)
 
                         if(blkselect.value=="3"){
                             const isEnemy = enemies.some((e, i) => {
                                 if (i % 3 == 0) {
-                                    return e = rx && enemies[i + 1] == ry;
+                                    return e == rx && enemies[i + 1] == ry;
                                 }
                             })
-                            if (data[rx][ry]!=3 && !isEnemy){
+                            if (!isEnemy){
                                 enemies.push(rx, ry, parseInt(ehealth.value))
                             }
                         }
