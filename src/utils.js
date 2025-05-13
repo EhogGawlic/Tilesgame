@@ -65,6 +65,9 @@ function beginLevel(){
     const mins = Math.min(lvl.width, lvl.height)
     offy = ((lvl.width-mins)/2)/tilesize
     offx = ((lvl.height-mins)/2)*tilesize
+    localStorage.setItem("level", level)
+    localStorage.setItem("coins", coins)
+    localStorage.setItem("energy", energy)
 }
 beginLevel()
 function drawLevel(){
@@ -146,4 +149,11 @@ function processFiles(files) {
         saved = JSON.parse(e.target.result);
     }
     reader.readAsText(file)
+}
+
+
+if (localStorage.getItem("level")){
+    level = parseInt(localStorage.getItem("level"))
+    coins = parseInt(localStorage.getItem("coins"))
+    energy = parseInt(localStorage.getItem("energy"))
 }
